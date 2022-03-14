@@ -1,5 +1,6 @@
 const config = {
   server: {
+    port: 3333,
     secret: "kjVkuti2xAyF3JGCzSZTk0YWM5JhI9mgQW4rytXc",
   },
   rtmp_server: {

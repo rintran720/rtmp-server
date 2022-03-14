@@ -11,7 +11,6 @@ passport.deserializeUser((obj, cb) => {
   cb(null, obj);
 });
 
-// Passport strategy for handling user registration
 passport.use(
   "localRegister",
   new LocalStrategy(
@@ -51,7 +50,6 @@ passport.use(
   )
 );
 
-// Passport strategy for authenticating users
 passport.use(
   "localLogin",
   new LocalStrategy(

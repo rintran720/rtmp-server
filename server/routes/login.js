@@ -6,7 +6,6 @@ router.get(
   "/",
   require("connect-ensure-login").ensureLoggedOut(),
   (req, res) => {
-    console.log("in");
     res.render("login", {
       user: null,
       errors: {
