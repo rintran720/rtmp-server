@@ -1,7 +1,7 @@
 const NodeMediaServer = require("node-media-server"),
-  config = require("./config").rtmp_server;
-
-nms = new NodeMediaServer(config);
+  config = require("./config").rtmp_server,
+  User = require("./database/Schema").User,
+  nms = new NodeMediaServer(config);
 
 nms.on("prePublish", async (id, StreamPath, args) => {
   let stream_key = getStreamKeyFromStreamPath(StreamPath);
@@ -11,6 +11,17 @@ nms.on("prePublish", async (id, StreamPath, args) => {
     `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`,
     `stream_key=${stream_key}`
   );
+
+  User.findOne({ stream_key }, (err, user) => {
+    if (!err) {
+      if (!user) {
+        let session = nms.getSession(id);
+        session.reject();
+      } else {
+        // do stuff
+      }
+    }
+  });
 });
 
 const getStreamKeyFromStreamPath = (path) => {
