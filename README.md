@@ -1,4 +1,6 @@
-### NodeStream
+### RTMP SERVICE
+
+This application provide livestream service for streaming, and merge 2 stream to 1 stream if you want to make AMA live
 
 #### Install ffmpeg for RTMP to HLS transcoding
 
