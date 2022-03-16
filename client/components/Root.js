@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Router } from "react-router-dom";
 import LiveStreams from "./LiveStreams";
+import MergeStream from "./MergeStream";
 import Navbar from "./Navbar";
 import Settings from "./Settings";
 import VideoPlayer from "./VideoPlayer";
@@ -33,6 +34,12 @@ export default class Root extends React.Component {
             exact
             path='/settings'
             render={(props) => <Settings {...props} />}
+          />
+
+          <Route
+            exact
+            path='/merge'
+            render={(props) => <MergeStream {...props} />}
           />
         </div>
       </Router>

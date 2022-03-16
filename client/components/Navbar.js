@@ -29,6 +29,11 @@ export default class Navbar extends React.Component {
                 </Link>
               </li>
               <li className='nav-item float-right'>
+                <Link className={"nav-link"} to={"/merge"}>
+                  Merge stream
+                </Link>
+              </li>
+              <li className='nav-item float-right'>
                 <a
                   className='nav-link'
                   target='_blank'

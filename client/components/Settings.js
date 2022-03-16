@@ -1,15 +1,17 @@
 import axios from "axios";
 import React from "react";
 
-export default class Navbar extends React.Component {
+export default class MergeStream extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       stream_key: "",
+      copied: false,
     };
 
     this.generateStreamKey = this.generateStreamKey.bind(this);
+    this.copyStream = this.copyStream.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +24,14 @@ export default class Navbar extends React.Component {
         stream_key: res.data.stream_key,
       });
     });
+  }
+
+  copyStream(key) {
+    navigator.clipboard
+      .writeText(`rtmp://127.0.0.1:1935/live/${this.state.stream_key}`)
+      .then((done) => {
+        this.setState({ copied: true });
+      });
   }
 
   getStreamKey() {
@@ -42,6 +52,14 @@ export default class Navbar extends React.Component {
             <div className='row'>
               <h5>{this.state.stream_key}</h5>
             </div>
+            <div className='row'></div>
+            <div className='row'>
+              <h5>rtmp://127.0.0.1:1935/live/{this.state.stream_key}</h5>
+              <button className='btn btn-dark mt-2' onClick={this.copyStream}>
+                {this.state.copied ? "Copied" : "Copy rtmp"}
+              </button>
+            </div>
+
             <div className='row'>
               <button
                 className='btn btn-dark mt-2'
